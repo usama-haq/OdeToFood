@@ -30,7 +30,8 @@ namespace OdeToFood
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
+        public void Configure(
+            IApplicationBuilder app,
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
             IGreeter greeter)
@@ -41,6 +42,13 @@ namespace OdeToFood
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = context => context.Response.WriteAsync("Opps!")
+                });
+            }
 
             app.UseWelcomePage(new WelcomePageOptions
             {
@@ -49,6 +57,8 @@ namespace OdeToFood
 
             app.Run(async (context) =>
             {
+                //   throw new System.Exception("Something went wrong!");
+
                 string pageRoute = "-- Another Link " + context.Request.Scheme.ToString() + "://"
                                     + context.Request.Host.Value.ToString()
                                     + "/welcome";
