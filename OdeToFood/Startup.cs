@@ -50,6 +50,16 @@ namespace OdeToFood
                 });
             }
 
+            // Use index.html for root path if it exists
+            //app.UseDefaultFiles();
+            // See if the request matches any static files in wwwroot
+            //app.UseStaticFiles();
+
+            // Combines functionality of both of the following commands
+            // app.UseDefaultFiles();
+            // app.UseStaticFiles();
+            app.UseFileServer();
+
             app.UseWelcomePage(new WelcomePageOptions
             {
                 Path = "/welcome"
