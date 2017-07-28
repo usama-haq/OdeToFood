@@ -25,6 +25,7 @@ namespace OdeToFood
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddSingleton<IGreeter, Greeter>();
         }
@@ -52,32 +53,10 @@ namespace OdeToFood
                 });
             }
 
-            // Use index.html for root path if it exists
-            //app.UseDefaultFiles();
-            // See if the request matches any static files in wwwroot
-            //app.UseStaticFiles();
-
-            // Combines functionality of both of the following commands
-            // app.UseDefaultFiles();
-            // app.UseStaticFiles();
             app.UseFileServer();
 
-            // Use a default welcome page at /welcome route
-            app.UseWelcomePage(new WelcomePageOptions
-            {
-                Path = "/welcome"
-            });
-
-            app.Run(async (context) =>
-            {
-                //   throw new System.Exception("Something went wrong!");
-
-                string pageRoute = "-- Another Link " + context.Request.Scheme.ToString() + "://"
-                                    + context.Request.Host.Value.ToString()
-                                    + "/welcome";
-                string message = greeter.GetGreeting() + pageRoute;
-                await context.Response.WriteAsync(message);
-            });
+            // Use ASP.NET MVC Framework
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
