@@ -36,8 +36,10 @@ namespace OdeToFood
             ILoggerFactory loggerFactory,
             IGreeter greeter)
         {
+            // Register Logger
             loggerFactory.AddConsole();
 
+            // Handle Errors according to Development/Production/Staging Environment
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,6 +62,7 @@ namespace OdeToFood
             // app.UseStaticFiles();
             app.UseFileServer();
 
+            // Use a default welcome page at /welcome route
             app.UseWelcomePage(new WelcomePageOptions
             {
                 Path = "/welcome"
