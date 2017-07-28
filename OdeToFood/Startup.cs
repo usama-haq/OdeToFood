@@ -42,9 +42,17 @@ namespace OdeToFood
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWelcomePage(new WelcomePageOptions
+            {
+                Path = "/welcome"
+            });
+
             app.Run(async (context) =>
             {
-                string message = greeter.GetGreeting();
+                string pageRoute = "-- Another Link " + context.Request.Scheme.ToString() + "://"
+                                    + context.Request.Host.Value.ToString()
+                                    + "/welcome";
+                string message = greeter.GetGreeting() + pageRoute;
                 await context.Response.WriteAsync(message);
             });
         }
