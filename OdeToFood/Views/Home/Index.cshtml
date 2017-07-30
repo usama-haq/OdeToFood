@@ -16,6 +16,9 @@
                     <a href="/home/details/@restaurant.Id">Details</a>
                     @Html.ActionLink("View", nameof(HomeController.Details), new { id = restaurant.Id })
                 </td>
+                <td>
+                    @Html.ActionLink("Create", nameof(HomeController.Create))
+                </td>
                 <td>@restaurant.Name</td>
             </tr>
         }
