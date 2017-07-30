@@ -1,5 +1,5 @@
 ﻿using OdeToFood.Contracts;
-using OdeToFood.Models;
+using OdeToFood.Entities;
 using System;
 using System.Collections.Generic;
 
