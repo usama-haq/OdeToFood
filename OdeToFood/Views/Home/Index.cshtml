@@ -1,4 +1,5 @@
 ﻿@model OdeToFood.ViewModels.HomePageViewModel
+@using OdeToFood.Controllers
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,9 +12,12 @@
         @foreach (var restaurant in Model.Restaurants)
         {
             <tr>
-                <td>@restaurant.Id</td>
+                <td>
+                    <a href="/home/details/@restaurant.Id">Details</a>
+                    @Html.ActionLink("View", nameof(HomeController.Details), new { id = restaurant.Id })
+                </td>
                 <td>@restaurant.Name</td>
-        </tr>
+            </tr>
         }
     </table>
 </body>

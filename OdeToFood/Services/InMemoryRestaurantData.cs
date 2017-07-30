@@ -1,7 +1,7 @@
 ﻿using OdeToFood.Contracts;
 using OdeToFood.Entities;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OdeToFood.Services
 {
@@ -17,6 +17,11 @@ namespace OdeToFood.Services
                 new Restaurant{Id = 2, Name = "LJ's and the Kat" },
                 new Restaurant {Id = 3, Name = "King's Contrivance" }
             };
+        }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(r => r.Id == id);
         }
 
         IEnumerable<Restaurant> IRestaurantData.GetAll()
