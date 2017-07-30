@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -56,7 +58,19 @@ namespace OdeToFood
             app.UseFileServer();
 
             // Use ASP.NET MVC Framework
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(ConfigureRoutes);
+
+            // If none of the routes match
+            app.Run(ctx => ctx.Response.WriteAsync("Page not Found..."));
+        }
+
+        // To configure Routes for MVC framework
+        // You can define any number of routes as needed
+        // This is called convention bases routing.
+        private void ConfigureRoutes(IRouteBuilder routebuilder)
+        {
+            // route for path /Home/Index
+            routebuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
