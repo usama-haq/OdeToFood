@@ -8,5 +8,7 @@ namespace OdeToFood.Contracts
         IEnumerable<Restaurant> GetAll();
 
         Restaurant Get(int id);
+
+        Restaurant Add(Restaurant newRestaurant);
     }
 }
