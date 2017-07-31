@@ -57,13 +57,46 @@ namespace OdeToFood.Controllers
                     Cuisine = model.Cuisine,
                     Name = model.Name
                 };
-                _restaurantData.Add(newRestaurant);
+
+                newRestaurant = _restaurantData.Add(newRestaurant);
+                _restaurantData.Commit();
 
                 return RedirectToAction(nameof(Details), new { Id = newRestaurant.Id });
             }
             else
             {
                 return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if (model == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, RestaurantEditViewModel model)
+        {
+            var restaurant = _restaurantData.Get(id);
+
+            if (ModelState.IsValid)
+            {
+                restaurant.Cuisine = model.Cuisine;
+                restaurant.Name = model.Name;
+                _restaurantData.Commit();
+                return RedirectToAction(nameof(Details), new { id = restaurant.Id });
+            }
+            else
+            {
+                return View(restaurant);
             }
         }
     }

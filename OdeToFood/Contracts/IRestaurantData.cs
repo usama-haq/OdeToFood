@@ -10,5 +10,7 @@ namespace OdeToFood.Contracts
         Restaurant Get(int id);
 
         Restaurant Add(Restaurant newRestaurant);
+
+        void Commit();
     }
 }

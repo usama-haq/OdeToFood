@@ -1,5 +1,6 @@
 ﻿using OdeToFood.Contracts;
 using OdeToFood.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,11 @@ namespace OdeToFood.Services
             _restaurants.Add(newRestaurant);
 
             return newRestaurant;
+        }
+
+        public void Commit()
+        {
+            // ...
         }
 
         public Restaurant Get(int id)
