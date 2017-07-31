@@ -1,6 +1,4 @@
-﻿@using OdeToFood.Entities
-@using OdeToFood.Controllers
-@model Restaurant
+﻿@model Restaurant
 
 @{
     ViewBag.Title = "Create";
@@ -17,7 +15,7 @@
             <div>
                 @Html.LabelFor(m => m.Name)
                 @Html.EditorFor(m => m.Name)
-                @Html.ValidationMessageFor(m=> m.Name)
+                @Html.ValidationMessageFor(m => m.Name)
             </div>
 
             <div>
@@ -31,7 +29,6 @@
         }
     </div>
 </div>
-
 
 <div>
     @Html.ActionLink("Home", nameof(HomeController.Index))
