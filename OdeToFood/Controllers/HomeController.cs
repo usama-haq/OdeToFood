@@ -8,11 +8,9 @@ namespace OdeToFood.Controllers
     public class HomeController : Controller
     {
         private IRestaurantData _restaurantData;
-        private IGreeter _greeter;
 
-        public HomeController(IRestaurantData restaurantData, IGreeter greeter)
+        public HomeController(IRestaurantData restaurantData)
         {
-            _greeter = greeter;
             _restaurantData = restaurantData;
         }
 
@@ -21,7 +19,6 @@ namespace OdeToFood.Controllers
             var model = new HomePageViewModel()
             {
                 Restaurants = _restaurantData.GetAll(),
-                CurrentMessage = _greeter.GetGreeting()
             };
             return View(model);
         }
