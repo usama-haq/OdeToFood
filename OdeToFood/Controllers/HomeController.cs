@@ -18,9 +18,11 @@ namespace OdeToFood.Controllers
 
         public IActionResult Index()
         {
-            var model = new HomePageViewModel();
-            model.Restaurants = _restaurantData.GetAll();
-            model.CurrentMessage = _greeter.GetGreeting();
+            var model = new HomePageViewModel()
+            {
+                Restaurants = _restaurantData.GetAll(),
+                CurrentMessage = _greeter.GetGreeting()
+            };
             return View(model);
         }
 
@@ -50,10 +52,11 @@ namespace OdeToFood.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newRestaurant = new Restaurant();
-                newRestaurant.Cuisine = model.Cuisine;
-                newRestaurant.Name = model.Name;
-
+                var newRestaurant = new Restaurant()
+                {
+                    Cuisine = model.Cuisine,
+                    Name = model.Name
+                };
                 _restaurantData.Add(newRestaurant);
 
                 return RedirectToAction(nameof(Details), new { Id = newRestaurant.Id });
