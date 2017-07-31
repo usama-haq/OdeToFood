@@ -1,27 +1,31 @@
 ﻿@model OdeToFood.ViewModels.HomePageViewModel
+@using OdeToFood.Entities
 @using OdeToFood.Controllers
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    <h1>Welcome!</h1>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Welcome!</h1>
+
+<table>
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>
+                <a href="/home/details/@restaurant.Id">Details</a>
+                @Html.ActionLink("View", nameof(HomeController.Details), new { id = restaurant.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Create", nameof(HomeController.Create))
+            </td>
+            <td>@restaurant.Name</td>
+        </tr>
+    }
+</table>
+
+
+@section footer {
     <h3>@Model.CurrentMessage</h3>
-    <table>
-        @foreach (var restaurant in Model.Restaurants)
-        {
-            <tr>
-                <td>
-                    <a href="/home/details/@restaurant.Id">Details</a>
-                    @Html.ActionLink("View", nameof(HomeController.Details), new { id = restaurant.Id })
-                </td>
-                <td>
-                    @Html.ActionLink("Create", nameof(HomeController.Create))
-                </td>
-                <td>@restaurant.Name</td>
-            </tr>
-        }
-    </table>
-</body>
-</html>
+}
