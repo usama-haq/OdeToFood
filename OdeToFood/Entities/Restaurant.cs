@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OdeToFood.Entities
 {
@@ -13,13 +14,13 @@ namespace OdeToFood.Entities
 
     public class Restaurant
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required, MaxLength(80)]
         [DataType(DataType.Text)]
-        [Display(Name="Restaurant Name ")]
+        [Display(Name = "Restaurant Name ")]
         public string Name { get; set; }
-
 
         public CuisineType Cuisine { get; set; }
     }
