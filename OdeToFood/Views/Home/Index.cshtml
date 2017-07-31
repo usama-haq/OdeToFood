@@ -6,20 +6,14 @@
 
 <h1>Welcome!</h1>
 
-<table>
-    @foreach (var restaurant in Model.Restaurants)
-    {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@restaurant.Id">Details</a>
-                <a asp-action="Edit" asp-route-id="@restaurant.Id">Edit</a>
-            </td>
-            <td>@restaurant.Name</td>
-        </tr>
-    }
-</table>
+@foreach (var restaurant in Model.Restaurants)
+{
+    @Html.Partial("_Summary", restaurant)
+}
 
-<a asp-controller="Home" asp-action="Create">Create</a>
+<div>
+    <a asp-controller="Home" asp-action="Create">Create</a>
+</div>
 
 @section footer {
     <h3>@Model.CurrentMessage</h3>
