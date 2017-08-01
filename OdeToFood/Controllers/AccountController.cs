@@ -76,7 +76,7 @@ namespace OdeToFood.Controllers
                 {
                     if (Url.IsLocalUrl(model.ReturnUrl))
                     {
-                        return RedirectToAction(model.ReturnUrl);
+                        return RedirectToRoute(model.ReturnUrl);
                     }
                     else
                     {
