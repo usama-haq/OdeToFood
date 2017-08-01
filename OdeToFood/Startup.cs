@@ -70,6 +70,8 @@ namespace OdeToFood
 
             app.UseFileServer();
 
+            app.UseNodeModules(env.ContentRootPath);
+
             // Add Identity Framework Middleware
             app.UseIdentity();
 
