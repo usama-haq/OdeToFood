@@ -77,9 +77,6 @@ namespace OdeToFood
 
             // Use ASP.NET MVC Framework
             app.UseMvc(ConfigureRoutes);
-
-            // If none of the routes match
-            app.Run(ctx => ctx.Response.WriteAsync("Page not Found..."));
         }
 
         // To configure Routes for MVC framework
